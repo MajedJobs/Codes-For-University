@@ -1,0 +1,15 @@
+    public static void main(String[] args) {
+        Scanner num = new Scanner(System.in); 
+        double sum = 0; 
+        System.out.println("Enter three numbers to find there average !");
+        
+        sum += num.nextDouble(); 
+        System.out.println("Next!");
+        sum += num.nextDouble(); 
+        System.out.println("Next!");
+        sum += num.nextDouble(); 
+        
+        sum = sum /3;  
+        System.out.println("The result is: " + sum);
+        
+    }
