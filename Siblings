@@ -1,0 +1,42 @@
+    public static void main(String[] args) {
+       String firstName; 
+       String secondName; 
+       String fatherNameOfFirst = ""; 
+       String fatherNameOfSecond = ""; 
+       
+       Scanner scannerForNames = new Scanner(System.in); 
+       
+        System.out.println("Enter first name !");
+        firstName = scannerForNames.nextLine(); 
+      
+        System.out.println("Enter second name ! ");
+        secondName = scannerForNames.nextLine(); 
+        boolean flag = false; 
+     for(int i=0; i<firstName.length(); i++ ){
+         if(firstName.charAt(i) == ' '){
+             flag = true; 
+         }
+         
+         if(flag){
+             fatherNameOfFirst += firstName.charAt(i); 
+         }
+     }
+     flag = false;
+     
+          for(int i=0; i<secondName.length(); i++ ){
+         if(secondName.charAt(i) == ' '){
+             flag = true; 
+         }
+         
+         if(flag){
+             fatherNameOfSecond += secondName.charAt(i); 
+         }
+     }
+          
+        if(fatherNameOfFirst.compareToIgnoreCase(fatherNameOfSecond) == 0 ){
+            System.out.println("They are siblings!");
+        } else {
+            System.out.println("They are not siblings!");
+        }
+        
+    }
