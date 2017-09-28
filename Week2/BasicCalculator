@@ -1,0 +1,37 @@
+   public static void main(String[] args){
+        double num1,num2,result; 
+        String op; 
+        char typeOfOperator; 
+        Scanner input = new Scanner(System.in); 
+        Scanner input1 = new Scanner(System.in); 
+        System.out.println("Enter the first number");
+        num1 = input.nextDouble(); 
+        
+        System.out.println("Enter the operator sign !");
+        op = input.next(); 
+        typeOfOperator = op.charAt(0); 
+        
+        System.out.println("Enter the second number");
+        num2 = input.nextDouble(); 
+        
+        System.out.println("The result is: ");
+        
+        switch(typeOfOperator){
+            case '+':
+                result = num1+num2; 
+                System.out.println(result);
+                break; 
+            case '/':
+                result = num1/num2; 
+                System.out.println(result);
+                break;
+            case '*':
+                result = num1 * num2; 
+                System.out.println(result);
+                break; 
+            case '-':
+                result = num1 - num2; 
+                System.out.println(result);
+                break; 
+        }
+    }
