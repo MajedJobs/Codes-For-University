@@ -1,0 +1,16 @@
+    public static void main(String[] args) {
+        String sentence; 
+        int counterOfSpaces = 1; 
+        Scanner scannerOfSentence = new Scanner(System.in); 
+        
+        System.out.println("Enter a sentence!");
+        sentence = scannerOfSentence.nextLine(); 
+        
+        for(int i=0; i< sentence.length(); i++){
+            if(sentence.charAt(i) == ' '){
+                counterOfSpaces++; 
+            }
+        }
+        
+        System.out.println("There are " + (counterOfSpaces) + " words in the sentence");
+    }
