@@ -1,0 +1,21 @@
+      public static void main(String[] args){
+    String firstName; 
+    String secondName; 
+    Scanner scannerForNames = new Scanner(System.in); 
+    
+      System.out.println("Enter the first name!");
+      firstName = scannerForNames.nextLine(); 
+      
+      System.out.println("Enter the second name!");
+      secondName = scannerForNames.nextLine(); 
+      
+      int x = firstName.compareToIgnoreCase(secondName); 
+      
+      if(x > 0 ){
+          System.out.println(firstName + " is longer than " + secondName);
+      }else if ( x< 0 ){
+          System.out.println(secondName + " is longer than " + firstName);
+      }else{
+          System.out.println("Both names are identical");
+      }
+  }
