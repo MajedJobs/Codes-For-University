@@ -1,0 +1,36 @@
+public static void main(String[] args) {
+        int numberOfStudents; 
+        String name; 
+        int score; 
+        int maxScore=0,minScore=100000;
+        String highestStudent="",lowestStudent=""; 
+        int counter =0; 
+        Scanner input = new Scanner(System.in); 
+        System.out.println("how many students you want to evaluate! ");
+        numberOfStudents = input.nextInt(); 
+        
+        while(counter < numberOfStudents){
+            System.out.println("Enter the student's name ");
+            name = input.next(); 
+            
+            System.out.println("Enter the student's score ");
+            score = input.nextInt(); 
+            
+       
+            
+            if(maxScore < score ){
+                maxScore = score; 
+                highestStudent = name; 
+            }
+            if(minScore > score ){
+                minScore = score; 
+                lowestStudent = name; 
+            }
+            System.out.println("__________________");
+            counter ++; 
+        }
+        
+        System.out.println("The highest student is: " + highestStudent + "\n and his score is: " + maxScore);
+        System.out.println("The lowest student is: " + lowestStudent + "\n and his score is: " + minScore);
+        
+    }
