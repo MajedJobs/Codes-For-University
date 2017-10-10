@@ -1,0 +1,28 @@
+public static void main(String[] args){
+		String sentence = "I'am a java ProgramMerm";
+		String old = sentence;
+        String newSentence =""; 
+        int p; 
+        
+        p=sentence.toLowerCase().indexOf('m'); 
+        newSentence += sentence.substring(0,p); 
+        sentence = sentence.substring(p+1 , sentence.length()); 
+        System.out.println(" Beofre:      " + sentence + "\n After:      " + newSentence + "\n_________");
+        
+        p = sentence.toLowerCase().indexOf('m'); 
+        newSentence += sentence.substring(0,p); 
+        sentence = sentence.substring(p+1 , sentence.length()); 
+        System.out.println(" Beofre:      " + sentence + "\n After:      " + newSentence + "\n_________");
+        
+        
+        p = sentence.toLowerCase().indexOf('m'); 
+        newSentence += sentence.substring(0,p); 
+        sentence = sentence.substring(p+1 , sentence.length()); 
+        System.out.println(" Beofre:      " + sentence + "\n After:      " + newSentence + "\n_________");
+        
+        // the final stage 
+        newSentence += sentence; 
+        
+        System.out.println("The final sentence is: " + newSentence );
+       
+	} 
