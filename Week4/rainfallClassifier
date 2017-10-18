@@ -1,0 +1,34 @@
+public class rainfallsClassifier {
+public static void main(String[] args) {
+        final int  rows = 4 , cols = 7;
+        double commulativeAndAverage=0; 
+        int[][] rainfallRates = new int[rows][cols]; 
+        Scanner input = new Scanner(System.in); 
+        
+        System.out.println("Enter the rainfall of each day as specified ");
+        
+        for(int i=0; i<rows; i++){
+            System.out.println("Week#" + (i+1));
+            for(int y=0; y<cols; y++){
+                rainfallRates[i][y] = input.nextInt(); 
+                commulativeAndAverage += rainfallRates[i][y]; 
+            }
+            commulativeAndAverage /= cols;
+            getClassification(commulativeAndAverage, rows);
+            commulativeAndAverage =0;
+        }
+        
+        System.exit(0);
+        
+    }
+    
+    public static void getClassification(double average , int orderOfTheWeek){
+        if(average >= 6 ){
+            System.out.println( "High  Week#" + orderOfTheWeek + " (" + average + ")");
+        }else if( average>3 && average <6 ){
+             System.out.println("Medium  Week#" + orderOfTheWeek + " (" + average + ")");
+        }else if(average <= 3){
+             System.out.println("Low  Week#" + orderOfTheWeek + " (" + average + ")");
+        }
+    }
+}
