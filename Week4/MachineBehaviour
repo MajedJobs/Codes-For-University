@@ -1,0 +1,53 @@
+public class MachineBehaviours {
+    public static void main(String[] args) throws IOException {
+        Scanner input = new Scanner(System.in); 
+        
+        
+       int choice=1; 
+       boolean isItOperated = false; 
+        System.out.println("Welcome , user!\n");
+        //printInstruction();
+       Machine on = Machine.ON; 
+       Machine off = Machine.OFF; 
+       Machine start = Machine.START; 
+       Machine progress = Machine.IN_PROGRESS; 
+       Machine done = Machine.DONE; 
+       
+        do{
+            printInstruction();
+            System.out.println("______________________");
+            System.out.println("select a choice!");
+            choice = input.nextInt(); 
+            if(choice == 1 ){
+                System.out.println("The machine is " + on.name());
+                isItOperated = true; 
+            } 
+            if(choice == 2 ){
+                System.out.println("The machine is " + off.name());
+                break;
+            }
+            if(choice == 3 && isItOperated == false){
+                System.out.println("Please  , operate the machine first!");
+                System.out.println("_________________*****________________");
+            }else if (choice == 3 && isItOperated){
+                System.out.println("The machine is " + start.name() + "ING" + " a process!");
+                System.out.println("/////////\\\\\\\\");
+                System.out.println("         .         ");
+                System.out.println("         .         ");
+                System.out.println("         .         ");
+                System.out.println(progress.name());
+                System.out.println("||||||||||||||||||||||||||||||||||");
+                System.out.println("The Process is " + done.name() + " ( ͡° ͜ʖ ͡°) ");
+                System.out.println("\n\n\n\n\n  $$$$$$$$$$$$||###############");
+            }
+        }while(choice == 1 || choice == 2 || choice == 3 ); 
+    }
+    
+    public static void printInstruction(){
+        System.out.println(" (1) to operate the machine! \n (2) to shutdown the machine! \n (3) to start a process!");
+    }
+}
+
+enum Machine{
+    ON , OFF, START, IN_PROGRESS, DONE; 
+}
