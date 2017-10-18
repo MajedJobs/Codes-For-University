@@ -1,0 +1,42 @@
+public class LetterRemover {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in); 
+        String sentence; 
+        String sentenceAfterRemoving; 
+        char deletedLetter;
+        
+        System.out.println("Enter the sentence!");
+        sentence = input.nextLine(); 
+        
+        System.out.println("Enter the letter you wanna remove!");
+        deletedLetter = input.nextLine().charAt(0); 
+        
+        
+        sentenceAfterRemoving = newSentenceGenerator(sentence, deletedLetter); 
+        System.out.println("The sentence after removing the letter " + deletedLetter + " in both uppercase or lowercase \n" + sentenceAfterRemoving);
+        
+        
+        System.exit(0);
+        
+    }
+    
+    public static String newSentenceGenerator(String oldSentence , char deletedChar){
+        String newSentence=""; 
+        int letter = (int) deletedChar; 
+        int letterAlt=0; 
+        
+        if(letter > 64 && letter<91){
+            letterAlt = letter + 32; // the letter will be LOWERCASE 
+        }else if(letter>96 && letter<123){
+            letterAlt = letter-32; // the letter will be UPPERCASE 
+        }
+        
+        for(int i=0; i<oldSentence.length(); i++ ){
+            if( (((int)oldSentence.charAt(i)) == letter) || ( (int)oldSentence.charAt(i) == letterAlt)){
+               continue; 
+            }else{
+                newSentence += oldSentence.charAt(i); 
+            }
+        }
+        return newSentence;
+    }
