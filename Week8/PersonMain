@@ -1,0 +1,62 @@
+public class PersonMain {
+  
+    public static void main(String[] args) {
+     Person[] p =  new Person[4]; 
+     p[0] = new Person("Muhammed", 20, 55, 160, "male"); 
+     p[1] = new Person("Mahmoud", 25, 80, 170, "male"); 
+     p[2] = new Person("Fahd", 30,60, 166, "male"); 
+     p[3] = new Person("Amal", 30,60, 173, "female"); 
+     
+     for(int i=0; i<4; i++){
+         System.out.println("The required calories for a " + p[i].getAge() + " years " + p[i].gender + " is :"  + calCalories(p[i]));
+     }
+     
+     MatchStartedbyChar('S' , p);
+     MatchEndedbyChar('d' , p ); 
+    }
+    
+    public static double calCalories(Person p ){
+        double calories=0; 
+        if( p.gender.toLowerCase() == "male"){
+            calories = 6.25 * p.getLength(); 
+            calories += 10*p.getWeight(); 
+            calories -= p.getAge()*5 + 5; 
+        }else if(p.gender.toLowerCase() == "female"){
+            calories = 6.25* p.getLength(); 
+            calories += 10*p.getWeight(); 
+            calories -= p.getAge()*5 - 161;
+        }
+        return calories; 
+    }
+    
+    
+    public static void MatchStartedbyChar (char letter , Person[] p ) {
+        String regularExp =  letter + ".*"; 
+        int counter= 0; 
+        //System.out.println(regularExp);
+        for(int i=0; i<4; i++){
+            if(p[i].getName().matches(regularExp)){
+                //System.out.println("Week8.PersonMain.MatchStartedbyChar()");
+                System.out.println("The name Started with [" + letter +"] : " + p[i].getName());
+                counter++; 
+            }
+        }
+        if(counter == 0 ){
+            System.out.println("There is no name ended by [" + letter +"]");
+        }
+    }
+    
+    public static void MatchEndedbyChar (char letter , Person[] p ) {
+        int counter=0;  
+        String regularExp = ".*" + letter; 
+        for(int i=0; i<4; i++){
+            if(p[i].getName().matches(regularExp)){
+                System.out.println("The name Ended with [" + letter +"] : " + p[i].getName());
+                counter ++; 
+            }
+        }
+        if(counter == 0 ){
+            System.out.println("There is no name ended by [" + letter +"]");
+        }
+    }
+}
