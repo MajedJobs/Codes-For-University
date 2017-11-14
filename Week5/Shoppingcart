@@ -1,0 +1,74 @@
+public class ShoppingCart {
+   public String productCode; 
+   public String productName; 
+   private int price; 
+   private int quantity;  
+   static int numberOfProducts; 
+   private String pattern = "M-d-yyyy"; 
+   private SimpleDateFormat expDate = new SimpleDateFormat(pattern);
+   private Date realExpDate; 
+   private String rt; 
+   // constructor 
+    public ShoppingCart(String productCode,  String productName , 
+            int price , int quantity ,
+            String realExpDate  ) {
+        this.price = price; 
+        this.productCode = productCode; 
+        this.quantity = quantity; 
+        this.productName = productName; 
+       try { 
+           this.realExpDate = expDate.parse(realExpDate);
+       } catch (ParseException ex) {
+           Logger.getLogger(ShoppingCart.class.getName()).log(Level.SEVERE, null, ex);
+       }
+        
+    }
+    
+    public ShoppingCart(){
+        
+    }
+   // constructor ends here 
+    
+    
+   // priavte fields date - quantity - price 
+    
+    
+   // setter method section lies here 
+   public void setExpDate(String realExpDateII){
+       try { 
+           realExpDate = expDate.parse(realExpDateII);
+       } catch (ParseException ex) {
+           Logger.getLogger(ShoppingCart.class.getName()).log(Level.SEVERE, null, ex);
+       }
+       
+       rt = expDate.format(realExpDate); 
+   }
+   // setter method section ends here 
+   public void setQuantity(int quantity){
+       this.quantity = quantity; 
+   }
+   public void setPrice(int price){
+       this.price = price; 
+   }
+   // getter method seciton lies here 
+   public String getExpDate(){
+       return rt; 
+   }
+   public int getQuantity(){
+       return quantity; 
+   }
+   public int getPrice(){
+       return price; 
+   }
+   // getter method section ends here 
+   
+   public String toString(){
+       return productCode + " " + productName + "  " + price + "  " + quantity + "  " + rt; 
+   }
+   
+   public double productDiscount(double discountPercentage , double price){
+       return ( price - (discountPercentage * price )) ; 
+   }
+   
+   
+}
