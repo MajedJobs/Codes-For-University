@@ -1,0 +1,89 @@
+public class Students {
+   public int ID; 
+   String firstName , lastName; 
+   int birthDate; 
+   private double GPA; 
+   public static int studCounter=0; 
+   public Date date;  
+   public String pattern = "yyyy"; 
+   String currentDateALT; 
+   int currentDate; 
+   public SimpleDateFormat patternOfDate = new SimpleDateFormat(pattern);
+   // constructor section starts here 
+   public Students(int ID , String firstName ,String lastName , 
+           int birthDay ,  double GPA){
+       this.ID = ID; 
+       this.firstName = firstName; 
+       this.lastName = lastName; 
+       this.birthDate = birthDay; 
+       this.GPA = GPA; 
+       date = new Date();
+       currentDateALT = patternOfDate.format(date); 
+       currentDate = Integer.parseInt(currentDateALT); 
+       studCounter ++; 
+       
+   }
+   
+   public Students(){
+       this(0," "," ",0,0); 
+   }
+   
+   // constructor section ends here 
+   
+   // setter section starts here 
+   public void setID(int id){
+     ID = id; 
+   }
+   public void setFirstName(String firstName){
+       this.firstName = firstName; 
+   }
+   public void setLastName(String lastName){
+       this.lastName = lastName;
+   }
+   public void setBirthDate(int birthDate){
+       this.birthDate = birthDate; 
+   }
+   public void setGPA(double GPA){
+       this.GPA = GPA; 
+   }  
+   
+   // setter section ends here 
+   
+   // getter section starts here 
+   public int getID(){
+       return ID; 
+   }
+   public String getFirstName(){
+       return firstName; 
+   }
+   public String getLastName(){
+       return lastName; 
+   }
+   public int getBirthDate(){
+       return birthDate; 
+   }
+   public double getGPA(){
+       return GPA; 
+   }
+   
+   // setter section ends here 
+   
+   public String getName(){
+       return (firstName + lastName); 
+   }
+   public int getAge(){
+       return (currentDate - birthDate); 
+   }
+   double calculateGPA(double newGPA){
+       return ( (newGPA + GPA)/2); 
+   }
+   
+   public static int decrementCounter(){
+       return studCounter--; 
+   }
+   
+   
+   public String toString(){
+        return (this.ID + "      " + firstName  + "       " + lastName + "         "+ birthDate + "    " +  GPA); 
+   }
+}
