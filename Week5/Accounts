@@ -1,0 +1,73 @@
+public class Accounts {
+    private int id; 
+    private double balance; 
+    private double annualInterestrate = 0 ; 
+    public Date date; 
+    private String pattern = "MM-dd-yyyy";
+    private SimpleDateFormat patternOfDate = new SimpleDateFormat(pattern); 
+    private String createdDate; 
+    public Accounts(){
+        id = 0; 
+        balance = 0; 
+       date = new Date(); 
+       createdDate = patternOfDate.format(date); // = SimpleFormatDate.formt(DATE CLASS) 
+        System.out.println(createdDate);
+    }
+    
+    public Accounts(int id ,double balance){
+        this.id = id; 
+        this.balance = balance; 
+        date = new Date(); 
+        createdDate = patternOfDate.format(date);
+    }
+
+    // setter section starts here 
+    public void setId(int id){
+        this.id = id; 
+    }
+    public void setBalance(double balance){
+        this.balance = balance; 
+    }
+    public void setAnnualInterestRate(double annualInerestRate){
+        this.annualInterestrate = annualInerestRate; 
+    }
+    // setter section ends here 
+    
+    // getter section starts here 
+    public int getId(){
+        return id; 
+    }
+    public double getBalance(){
+        return balance; 
+    }
+    public double getAnnualInterestRate(){
+        return annualInterestrate; 
+    }
+    public String getCreatedDate(){
+        return createdDate; 
+    }
+    // getter section ends here 
+    
+    public double getMonthlyIterest(){
+        double monthlyInterest= (annualInterestrate/12) * balance; 
+        return monthlyInterest; 
+    }
+    public double getMonthlyInterestRate(){
+        return (annualInterestrate / 12); 
+    }
+    
+    public double withdraw(double wantedMoney){
+        double balanceAfterWithdrawing = balance - wantedMoney;
+        //System.out.println(balanceAfterWithdrawing);
+        setBalance(balanceAfterWithdrawing);
+        return balanceAfterWithdrawing; 
+    }
+    
+    public double deposit(double depositedMoney){
+        double balanceAfterDepositing = balance + depositedMoney;
+        setBalance(balanceAfterDepositing);
+        return balanceAfterDepositing; 
+    }
+    
+    
+}
