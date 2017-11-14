@@ -1,0 +1,35 @@
+public class AccountsMain {
+    public static void main(String[] args) {
+      int id; 
+      double balance; 
+      double annualInterest; 
+      Scanner input = new Scanner(System.in); 
+        System.out.println("Enter your id ");
+        id = input.nextInt(); 
+        
+        System.out.println("Enter your balance");
+        balance = input.nextDouble(); 
+        
+        Accounts a = new Accounts(id,balance); 
+        System.out.println("Enter the annual interest");
+        annualInterest = input.nextDouble(); 
+        
+        a.setAnnualInterestRate(annualInterest);
+        
+        double withdraw; 
+        double deposit; 
+        
+        System.out.println("Withdraw   ");
+        withdraw = input.nextDouble(); 
+        a.withdraw(withdraw); 
+        System.out.println("The balance is : " + a.getBalance());
+        
+        System.out.println("Deposit    ");
+        deposit = input.nextDouble(); 
+        a.deposit(deposit); 
+        System.out.println("The balance is:  " + a.getBalance());
+        
+        System.out.println("The monthly interest is : " + a.getMonthlyIterest());
+        System.out.println("The date the account was created on was " + a.getCreatedDate());
+    }
+}
