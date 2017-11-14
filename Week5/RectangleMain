@@ -1,0 +1,22 @@
+public class RectangleMain {
+    public static void main(String[] args) {
+        double height , width; 
+        Rectangle rect = new Rectangle(); 
+        
+        System.out.println("The default rectangle with width of " + rect.getWidth() + " and a height of " + rect.getHeight());
+        System.out.println("The area of it is: " + rect.getArea(rect.getWidth(), rect.getHeight()));
+        System.out.println("The perimeter of it is: " + rect.getPerimeter(rect.getWidth(), rect.getHeight()));
+        
+        System.out.println("_______________________________");
+        Scanner input = new Scanner(System.in); 
+        System.out.println("Enter the height and the width respectively !");
+        height = input.nextDouble(); 
+        width = input.nextDouble(); 
+      
+        Rectangle rect2 = new Rectangle(height , width ); 
+        
+        System.out.println("The rectangle you have entered has a  with width of " + rect.getWidth() + " and a height of " + rect.getHeight());
+        System.out.println("The area of it is: " + rect2.getArea(height, width));
+         System.out.println("The perimeter of it is: " + rect.getPerimeter(height, width));
+    }
+}
