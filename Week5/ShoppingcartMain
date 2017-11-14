@@ -1,0 +1,240 @@
+public class ShoppingCartMain {
+    
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in); 
+        char status = 'S'; 
+        int choice; 
+        char forUpdateOrAdd =0; 
+        int numberOfOrder; 
+        int indexDeletion; 
+        int size =3; 
+        String name; 
+        double percentageOfDiscount; 
+        int[] o = new int[4];  // to hold the properties the user want to update!
+        int indexOfUpdate; // the element the user want to update!
+        String updatedName = ""; 
+        int updatedNumber =0; 
+        ShoppingCart[] s1 = new ShoppingCart[size];
+        String nameOfProduct = null; 
+        s1[0] = new ShoppingCart("XxX", "apple", 12, 101, "10-10-2018");
+        s1[1] = new ShoppingCart("mMm", "banana", 13, 102, "9-10-2018");
+        s1[2] = new ShoppingCart("sSs", "carrot", 13, 102, "9-10-2018");
+        
+        s1[0].setExpDate("10-10-2018");
+        s1[1].setExpDate("9-10-2018");
+        s1[2].setExpDate("11-10-2018");
+        do{
+            printInfo();
+            System.out.println("Enter a command!");
+            choice = input.nextInt(); 
+            int u = 0; // to hold the index of the item the user want to seaech about in case 2 
+            switch(choice){
+                case 1:
+                    System.out.println("Enter the number of the product!");
+                    numberOfOrder = input.nextInt(); 
+                    System.out.println(s1[numberOfOrder].productCode + "   " + s1[numberOfOrder].productName + "   " + s1[numberOfOrder].getExpDate()+
+                            "   "+ s1[numberOfOrder].getPrice() + "   " + s1[numberOfOrder].getQuantity() + "     ");
+                    break; 
+                case 2:
+                    System.out.println("Enter the name of the product!");
+//                   try{
+//                    nameOfProduct = input.next(); 
+//                    u = indexOfProduct(nameOfProduct, s1); 
+//                    System.out.println("Product No. " +(u+1)+ "  " + s1[u].productCode + "   " + s1[u].productName + "   " + s1[u].getExpDate()+
+//                            "   "+ s1[u].getPrice() + "   " + s1[u].getQuantity() + "     ");
+//                   }catch(InputMismatchException e ){
+//                       System.out.println("The item has been removed!");
+//                   }
+                    nameOfProduct = input.next(); 
+                   try{
+                    //nameOfProduct = input.next(); 
+                    u = indexOfProduct(nameOfProduct, s1); 
+                    System.out.println("Product No. " +(u+1)+ "  " + s1[u].productCode + "   " + s1[u].productName + "   " + s1[u].getExpDate()+
+                            "   "+ s1[u].getPrice() + "   " + s1[u].getQuantity() + "     ");
+                   }catch(NullPointerException e ){
+                       System.out.println("The item has been removed!");
+                   }
+                    break; // for the case itself 
+                case 3:
+                    System.out.println("Enter the the name of the item you want to delete");
+                    nameOfProduct = input.next(); 
+                    indexDeletion = indexOfProduct(nameOfProduct, s1); 
+                    try {
+                      s1[indexDeletion] = null;   
+                    } catch (NullPointerException e) {
+                        System.out.println("The item has been removed !");
+                    }
+                    break; 
+                case 4:
+                    System.out.println("type the number of the item!");
+                    indexOfUpdate = input.nextInt(); 
+                    o = propertiesToUpdate();
+                    forUpdateOrAdd = 'S'; 
+                    updateFields(o, s1, indexOfUpdate); 
+                    break; 
+                case 5:
+                   size++; 
+                   s1 = Arrays.copyOf(s1, size); 
+                    System.out.println(s1.length);
+                   s1[size-1] = new ShoppingCart(); 
+                   addElements(s1, size); 
+                   break; 
+                case 6:
+                    for(int i=0; i<size; i++){
+                        System.out.println(s1[i].toString()); 
+                    }
+                    break; 
+                case 7:
+                    System.out.println("Enter the name of the product");
+                    name = input.next(); 
+                    System.out.println("Enter the percentage of the discount");
+                    percentageOfDiscount = input.nextDouble(); 
+                    applyDiscount(s1 , percentageOfDiscount , name ); 
+                    break; 
+                case 8:
+                    printAllProducts(s1); 
+                case 0:
+                    System.exit(0); 
+            }
+            System.out.println("__________________________________");
+           
+        }while(true); 
+        
+           
+            
+    }
+    
+    public static void printInfo(){
+        System.out.println("Welcome!\n\n"
+                + "1 to print information about a product \n"
+                + "2 to search about a product \n"
+                + "3 to delete a product \n"
+                + "4 to update a product \n"
+                + "5 to add new element \n"
+                + "6 to print all elements\n"
+                + "7 to apply a discount coppon\n"
+                + "8 to print all the products");
+    }
+    
+    public  static int  indexOfProduct(String nameOfProduct , ShoppingCart[] s){
+        int u=0;
+         for(int i=0 ;i<s.length; i++){
+           
+                        if(nameOfProduct.equalsIgnoreCase(s[i].productName)){
+                            u = i; 
+                            break; // for the loop 
+                        }
+                    }
+        return u; 
+    }
+    
+    public static int[] propertiesToUpdate(){
+        Scanner input = new Scanner(System.in); 
+        final int size = 4;
+        int index[] = new int [size];
+        char t = 0; 
+        System.out.println("To update any property , type y or Y ");
+        for(int i=0; i<size; i++ ){
+            switch(i){
+                case 0:
+                    System.out.println(">> Do you want to update the name ? ");
+                    t = input.next().charAt(0); 
+                    break;
+                case 1:
+                    System.out.println(">> Do you want to update the code ? ");
+                     t = input.next().charAt(0);
+                    break; 
+                case 2:
+                    System.out.println(">> Do you want to update the price ? ");
+                     t = input.next().charAt(0);
+                    break;
+                case 3:
+                    System.out.println(">> Do you want to update the quantity ? ");
+                     t = input.next().charAt(0);
+                    break; 
+            }
+            
+            if(t == 'Y' || t == 'y'){
+                index[i] = 1; 
+            }
+        }
+        return index; 
+    }
+    
+    public static void updateFields(int[] updatedFields , ShoppingCart[] s1 , int indexOfUpdate){
+        Scanner input = new Scanner(System.in); 
+        String updatedName; // to update other fields 
+        int updatedNumber; // to update  price & quantity 
+        
+                for(int i=0; i<4; i++){
+                        if(i == 0 && updatedFields[i]== 1 ){
+                            System.out.println(" update the name :  ");
+                            updatedName = input.next(); 
+                            s1[indexOfUpdate].productName =  updatedName;  
+                        }else if( i == 1 && updatedFields[i] == 1){
+                            System.out.println(" update the code :  ");
+                            updatedName = input.next(); 
+                             s1[indexOfUpdate].productCode =  updatedName;
+                        }else if( i == 2 && updatedFields[i] == 1 ){
+                            System.out.println(" update the price :  ");
+                            updatedNumber = input.nextInt();
+                             s1[indexOfUpdate].setPrice(updatedNumber);
+                        }else if( i == 3 && updatedFields[i]== 1){
+                            System.out.println(" update the quantity :  ");
+                            updatedNumber = input.nextInt();
+                            s1[indexOfUpdate].setQuantity(updatedNumber);
+                        }
+                      
+                    }
+            
+    }
+    
+    public static void addElements(ShoppingCart[] s1 , int size){
+        Scanner input = new Scanner(System.in); 
+        int numeric; 
+        String date; 
+        System.out.println("Enter the code of the element!");
+        s1[size-1].productCode = input.next(); 
+        
+        System.out.println("Enter the name of the element!");
+        s1[size-1].productName = input.next(); 
+        
+        System.out.println("Enter the price of the element!");
+        numeric = input.nextInt(); 
+        s1[size-1].setPrice(numeric);
+        
+         System.out.println("Enter the quatity of the element!");
+         numeric = input.nextInt(); 
+         s1[size-1].setQuantity(numeric);
+         
+          System.out.println("Enter the date in this format       MM-dd-yyyy");
+          date = input.next(); 
+          s1[size-1].setExpDate(date);
+    }
+    
+    public static void applyDiscount(ShoppingCart[] s , double discount , String name ){
+        String product; 
+        double priceBeforeDiscount =0 , priceAfterDiscount=0; 
+        int size = s.length; 
+        for(int i=0; i<size; i++){
+            if(s[i].productName.equalsIgnoreCase(name)){
+                product = s[i].productName; 
+                priceBeforeDiscount = s[i].getPrice(); 
+                  priceAfterDiscount = s[i].productDiscount( discount,  priceBeforeDiscount); 
+            }
+           
+        }
+        
+        System.out.println("The price was " + priceBeforeDiscount + " the discount is: " + discount + " the price after calculating the discout is : "
+            + priceAfterDiscount);
+    }
+    
+    public static void printAllProducts(ShoppingCart[] s ){
+        int size = s.length; 
+        
+        for(int i=0; i<size; i++){ 
+            System.out.println( s[i].toString() + "\n");
+        }
+    }
+}
+
