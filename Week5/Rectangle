@@ -1,0 +1,43 @@
+public class Rectangle {
+    private double height , width; 
+    private double area , perimeter; 
+    
+    public Rectangle (){
+        height = 1; 
+        width = 1; 
+    }
+    
+    public Rectangle(double height , double width ){
+        this.height = height; 
+        this.width =width; 
+    }
+    
+    // setter section lies here  
+    public void setWidth(double width ){
+        this.width  =width; 
+    }
+    
+    public void setHeight(double height){
+        this.height = height; 
+    }
+    
+    // setter secction ends here 
+    
+    // getter section starts here 
+    public double getHeight(){
+        return height; 
+    }
+    public double getWidth(){
+        return width; 
+    }
+    // getter section ends here 
+    
+    public double getPerimeter(double width ,double height){
+        return 2*(width+ height); 
+    }
+    
+    public double getArea(double width ,double height){
+        return width * height; 
+    }
+}
+    
