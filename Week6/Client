@@ -1,0 +1,263 @@
+public class Client {
+    public static void main(String[] args) {
+        int size = 0; 
+        int getIndex;
+        int choice; 
+        int index; 
+        int id=0; 
+        int deletedIndex; 
+        String lastName="";
+        int updatedIndex=0; 
+        Scanner input = new Scanner(System.in); 
+        Students[] s = new Students[size]; 
+        do{
+             printInfo();
+            if(size == 0 ){
+                System.out.println("\n\nThe system is emplty!");
+            }
+            System.out.println("Students registered : " + Students.studCounter);
+            System.out.println("Choose a command!");
+            choice = input.nextInt(); 
+            
+            switch(choice){
+                case 1:
+                    size++; 
+                    s = Arrays.copyOf(s, size); 
+                    s[size-1] = new Students(); 
+                    addStudent(s, size); 
+                    break; 
+                case 2:
+                    if(size == 0 ){
+                        System.out.println("\n\nThe System still empty , add new students!");
+                        continue; 
+                    }else {
+                    System.out.println("Enter the last name of the student");
+                    lastName = input.next(); 
+                    updateByLastName(s,lastName);
+                    }
+                    break; 
+                case 3:
+                    if( size == 0 ){
+                        System.out.println("The system still empty");
+                    }else {
+                    System.out.println("Enter the id of the account you want to update");
+                    updatedIndex = input.nextInt(); 
+                     updateByIndex(s,updatedIndex); 
+                            }
+                    break; 
+                case 4:
+                    if( size == 0 ){
+                        System.out.println("The system still empty");
+                    }else{
+                        System.out.println("Enter the index of the account you want to delete ");
+                        deletedIndex = input.nextInt(); 
+                        int indexI = findIndex(s, deletedIndex); 
+                        s[indexI] = null; 
+                        for(int i=indexI+1; i<s.length; i++){
+                            s[i-1] = s[i]; 
+                        }
+                        Students.decrementCounter();
+                    }
+                    break; 
+                case 5:
+                    System.out.println("Enter the student's index you want to observe  ");
+                    try{
+                        index  = input.nextInt(); 
+                        getIndex = findIndex(s, index); 
+                        System.out.println(s[getIndex].toString());
+                    }catch(NullPointerException e ){
+                        System.out.println("The student has been removed !");
+                    }
+                    break; 
+                case 6:
+                    System.out.println("All the students registered in the system "
+                            + "\n______________________________________");
+                    printAll(s); 
+                    break; 
+                case 0:
+                    System.exit(0);
+            }
+            System.out.println("__________________________");
+        }while(true); 
+    }
+    
+    public static void printInfo(){
+        System.out.println("1 to add a student\n"
+                + "2 to update student information by his/her id\n"
+                + "3 to update student information by his/her last name\n"
+                + "4 to delete a student\n"
+                + "5 to search about a student by his/her \n"
+                + "6 to display all students registered in the system \n"
+                + "0 to exit "); 
+    }
+    
+    public static void addStudent(Students[] s , int index){
+        int realIndex = index -1; 
+        String firstName , lastName; 
+        int birthDate , id; 
+        double GPA;
+        Scanner input = new Scanner(System.in); 
+        
+        System.out.println("Enter the id ");
+        id = input.nextInt(); 
+        
+        System.out.println("Enter the first name ");
+        firstName = input.next(); 
+         
+        System.out.println("Enter the last name ");
+        lastName = input.next();
+          
+        System.out.println("Enter the birth date ");
+        birthDate = input.nextInt(); 
+        
+        System.out.println("Enter the GPA");
+        GPA = input.nextDouble(); 
+        
+        s[realIndex].setID(id);
+        s[realIndex].setFirstName(firstName);
+        s[realIndex].setLastName(lastName);
+        s[realIndex].setBirthDate(birthDate);
+        s[realIndex].setGPA(GPA);
+    }
+    
+    public static void updateByLastName(Students[] s , String name ){
+        int index=0; 
+        String names; 
+        int numbers; 
+        double GPA; // GPA
+        int[] array = new int[5]; 
+        char choice; 
+        String[] choices = new String[5]; 
+        choices[0] = "id"; 
+        choices[1] = "first Name "; 
+        choices[2] = "last Name "; 
+        choices[3] = "birth date "; 
+        choices[4] = "GPA"; 
+        Scanner input = new Scanner(System.in); 
+        for(int i=0; i<s.length; i++){
+            if(s[i].getLastName().equalsIgnoreCase(name)){
+                index = i; 
+                break; 
+            }
+        }
+        
+        for(int i=0; i<5; i++){
+            System.out.println("Do you want to update the " + choices[i] + " Y to confirm"); // 0 
+            choice = input.next().charAt(0); 
+            if( choice == 'Y' || choice == 'y'){
+                array[i] = 1; 
+            }else{
+                array[i] = 0; 
+            }
+        }
+        
+        for(int y=0; y<5; y++){
+            if(array[y] == 1 ){
+                switch (y){
+                    case 0:
+                        System.out.println("Enter the " + choices[y]);
+                        numbers = input.nextInt(); 
+                        s[index].setID(numbers);
+                        break; 
+                    case 1:
+                        System.out.println("Enter the " + choices[y]);
+                        names = input.next(); 
+                        s[index].setFirstName(names);
+                        break; 
+                    case 2:
+                        System.out.println("Enter the " + choices[y]);
+                        names = input.next(); 
+                        s[index].setLastName(names);
+                        break; 
+                    case 3:
+                        System.out.println("Enter the " + choices[y]);
+                        numbers = input.nextInt(); 
+                        s[index].setBirthDate(numbers);
+                        break; 
+                    case 4:
+                        System.out.println("Enter the " + choices[y]);
+                        GPA = input.nextDouble(); 
+                        s[index].setGPA(GPA);
+                        break; 
+                }
+            }
+        }
+    }
+    
+    public static void updateByIndex (Students[] s , int index ){
+        index--; 
+        String[] choices = new String[5]; 
+        char o; 
+        Scanner input = new Scanner(System.in); 
+        int size = 5;
+        int[] array = new int[size]; 
+        choices[0] = "id"; 
+        choices[1] = "first Name "; 
+        choices[2] = "last Name "; 
+        choices[3] = "birth date "; 
+        choices[4] = "GPA"; 
+        int number; 
+        String name; 
+        double GPA; 
+        for(int i=0; i<size; i++){
+            System.out.println("Do you want to update " + choices[i]);
+            o = input.next().charAt(0); 
+            if(o == 'Y' || o == 'y'){
+                array[i] = 1; 
+            }
+        }
+        
+        for(int i=0; i<array.length; i++){
+            if(array[i] == 1 ){
+                switch(i){
+                    case 0:
+                        System.out.println("Enter " + choices[i]);
+                        number = input.nextInt(); 
+                        s[index].setID(number);
+                        break; 
+                    case 1:
+                        System.out.println("Enter " + choices[i]);
+                        name = input.next(); 
+                        s[index].setFirstName(name);
+                        break; 
+                    case 2:
+                        System.out.println("Enter " + choices[i]);
+                        name = input.next(); 
+                        s[index].setLastName(name);
+                        break; 
+                    case 3:
+                        System.out.println("Enter " + choices[i]);
+                        number = input.nextInt(); 
+                        s[index].setBirthDate(number);
+                        break; 
+                    case 4:
+                        System.out.println("Enter " + choices[i]);
+                        GPA = input.nextDouble(); 
+                        s[index].setGPA(GPA);
+                        break; 
+            }
+            }
+        }
+        
+    }
+    
+    public static int findIndex(Students[] s , int index ){
+        int u;
+        //System.out.println("LLLLLLL" + s.length);
+        for(int i=0; i<s.length; i++){
+            u = s[i].getID(); 
+            if(u  == index ){
+                //System.out.println("Week666666666--------" + u);
+               return i;  
+            }
+        }  
+        return 0; 
+}
+    
+    public static void printAll(Students[] s ){
+        for(int i=0; i<Students.studCounter; i++){
+            System.out.println(s[i].toString()+ "\n----------------------------");
+        }
+    }
+    
+}
