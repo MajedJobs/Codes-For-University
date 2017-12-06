@@ -1,0 +1,12 @@
+public class Truck extends Vehicle{
+    private double CargoWeight; 
+    
+    public Truck(double w , double cW){
+        super(w);
+        CargoWeight = cW; 
+    }
+    
+    public double CalculateWeight(){
+        return super.CalculateWeight() + CargoWeight;
+    }
+}
