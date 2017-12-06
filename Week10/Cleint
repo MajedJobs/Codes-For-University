@@ -1,0 +1,11 @@
+public class Client {
+    public static void main(String[] args) {
+        Car car1 = new Car(40000, 10); 
+        Truck tuck1 = new Truck(20000, 30000); 
+        car1.NumOfPeople = 3; 
+        car1.setvWeight(12000);
+        
+        System.out.println(car1.CalculateWeight());
+       
+    }
+}
