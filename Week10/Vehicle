@@ -1,0 +1,16 @@
+public class Vehicle {
+    private double vWeight; 
+    
+    public Vehicle(double w ){
+        this.vWeight = w; 
+    }
+    
+    public double CalculateWeight(){
+        return vWeight; 
+    }
+    
+    
+    public void setvWeight(double w ){
+       vWeight =w; 
+    }
+}
