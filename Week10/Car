@@ -1,0 +1,16 @@
+public class Car extends Vehicle {
+    public int NumOfPeople; 
+
+    public Car(double w , int no ){
+        super(w); 
+        NumOfPeople = no; 
+    }
+    
+    public double CalculateWeight(){
+        return super.CalculateWeight() + (NumOfPeople * 70 ); 
+    }
+    
+    public double CalculateWeight(double extraCargoRack){
+        return CalculateWeight() + extraCargoRack; 
+    }
+}
